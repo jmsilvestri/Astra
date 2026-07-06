@@ -2,7 +2,7 @@
 
 Astra is an open source, local-first AI voice assistant project. It is intended to become a smarter, more private alternative to cloud voice assistants such as Alexa or Google Home, with natural conversation, modular capabilities, and reasoning that can run locally.
 
-The project is in its initial foundation phase. Sprint 0 focuses on documentation, project structure, and shared engineering principles. No production assistant behavior is implemented yet.
+The project is in its early implementation phase. Sprint 0 established the foundation documentation. Sprint 1 introduces the first text assistant loop backed by a local Ollama runtime.
 
 ## Philosophy
 
@@ -17,6 +17,16 @@ Astra is guided by a small set of founding principles:
 
 These principles matter more than adding features quickly. Astra should remain understandable, replaceable, and respectful of the people who run it in their homes.
 
+## Current Capabilities
+
+Astra currently includes:
+
+- A command-line text assistant loop.
+- Local Ollama-backed response generation.
+- Environment-based configuration through `.env`.
+- A replaceable LLM client boundary.
+- Focused tests for assistant behavior and settings.
+
 ## Target Capabilities
 
 Astra is expected to grow toward:
@@ -30,9 +40,9 @@ Astra is expected to grow toward:
 
 ## Current Status
 
-Astra is at Sprint 0: Foundation.
+Astra is at Sprint 1: Text Assistant.
 
-The repository currently contains project documentation and architectural direction only. Business logic, LLM integration, voice processing, tool calling, and memory features are intentionally out of scope for this phase.
+The assistant can run as a local text loop, but tool calling, voice, memory, and personal integrations are intentionally not implemented yet.
 
 ## Installation
 
@@ -44,17 +54,38 @@ cd Astra
 uv sync
 ```
 
-If dependencies have not been added yet, `uv sync` may only prepare the project environment.
+Copy the example environment file if you want to customize local settings:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Default settings expect Ollama at `http://localhost:11434` using the `llama3.2` model.
+
+## Running Astra
+
+Start Ollama locally and make sure the configured model is available. For the default model:
+
+```powershell
+ollama pull llama3.2
+ollama serve
+```
+
+In another terminal, run:
+
+```powershell
+uv run astra
+```
+
+Type `exit`, `quit`, or `q` to stop the assistant.
 
 ## Running Tests
 
-When tests are available, run:
+Run:
 
 ```powershell
 uv run pytest
 ```
-
-Sprint 0 does not add business logic, so test coverage is expected to grow in later sprints as implementation begins.
 
 ## Documentation
 

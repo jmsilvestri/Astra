@@ -18,7 +18,7 @@ Establish the professional open source foundation:
 
 No business logic is included in this sprint.
 
-## Sprint 1 - Text Assistant
+## Sprint 1 - Text Assistant (Current)
 
 Create the first text-based assistant loop:
 
